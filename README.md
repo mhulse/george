@@ -54,21 +54,6 @@ $ vagrant ssh
 
 You are now connected to the Vagrant box at `/home/vagrant`.
 
-Use this to disconnect:
-
-```bash
-$ logout
-```
-
-… and then this when you are done developing:
-
-```bash
-# Terminate the use of any resources by the virtual machine:
-$ vagrant destroy
-```
-
-**Note:** The vagrant destroy command does not actually remove the downloaded box file. To completely remove the box file, you can use the `vagrant box remove` command.
-
 ## Neural Style
 
 ```bash
@@ -96,6 +81,10 @@ $ vagrant reload
 $ vagrant reload --provision
 # SSH into VM:
 $ vagrant ssh
+# Disconnect from VM:
+$ logout
+# … or:
+$ exit
 # Stop VM:
 $ vagrant halt
 ```
@@ -105,6 +94,15 @@ When running `vagrant up`, Vagrant will install dependencies as defined by the p
 If you make any modifications to the [`Vagrantfile`](Vagrantfile), `reload` should be called.
 
 If you make changes to your `Vagrantfile`’s provisioner’s (i.e., [`bootstrap.sh`](bootstrap.sh)), you’ll want to call `reload --provision`.
+
+When you are completely done developing:
+
+```bash
+# Terminate the use of any resources by the virtual machine:
+$ vagrant destroy
+```
+
+**Note:** The vagrant destroy command does not actually remove the downloaded box file. To completely remove the box file, you can use the `vagrant box remove` command.
 
 A full list of Vagrant’s CLI commands can be found here: [Command-Line Interface](https://www.vagrantup.com/docs/cli/).
 
