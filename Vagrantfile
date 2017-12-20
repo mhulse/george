@@ -1,31 +1,68 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Inspired by:
-# https://github.com/spiritix/vagrant-php7
-
-VAGRANTFILE_API_VERSION = "2"
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
-  config.vm.box = "ubuntu/trusty64"
-
-  # Network configuration:
-  config.vm.network "private_network", ip: "192.168.100.100"
-
-  config.vm.synced_folder ".", "/vagrant",
-    create: true,
-    id: "vagrant-root",
-    owner: "vagrant",
-    group: "www-data",
-    mount_options: ["dmode=775,fmode=664"]
+Vagrant.configure(2) do |config|
   
-  config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", 6144]
-    vb.customize ["modifyvm", :id, "--cpus", 2]
+  config.vm.box = 'ubuntu/trusty64'
+  
+  config.vm.provider 'virtualbox' do |vb|
+    
+    # Boost memory usage to 6GB:
+    vb.customize [
+      'modifyvm',
+      :id,
+      '--memory',
+      6144
+    ]
+    
+    # CPU usage:
+    vb.customize [
+      'modifyvm',
+      :id,
+      '--cpus',
+      2
+    ]
+    
   end
   
-  # Run this shell script when setting up the machine:
-  config.vm.provision :shell, path: "bootstrap.sh"
+  # Shared directory configuration defaults:
+  synced_folder_defaults = {
+    create: true,
+    owner: 'vagrant',
+    group: 'vagrant',
+    mount_options: [
+      'dmode=775',
+      'fmode=664',
+    ],
+  }
+  
+  # Disable the default share:
+  config.vm.synced_folder(
+    '.',
+    '/vagrant', {
+      id: 'vagrant-root',
+      disabled: true,
+    }
+  )
+  
+  # Give sync access to host machine:
+  config.vm.synced_folder(
+    './neural-style',
+    '/home/vagrant/neural-style',
+    synced_folder_defaults.merge!({
+      id: 'neural-style',
+    })
+  )
+  
+  # Run provisioning script:
+  config.vm.provision(
+    'shell',
+    {
+      path: 'bootstrap.sh',
+      args: [
+        # Pass arguments here …
+      ]
+    }
+  )
 
 end

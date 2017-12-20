@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# https://github.com/koalaman/shellcheck/wiki/SC1090
+# shellcheck source=/dev/null
+
 #-----------------------------------------------------------------------
 
 Message() {
@@ -45,23 +48,32 @@ Update
 
 Message "INSTALLING DEEP STYLE"
 
+#
 # https://www.linux.com/blog/create-your-own-neural-paintings-using-deep-learning
+#
+
 bash <(curl -sL https://raw.githubusercontent.com/torch/ezinstall/master/install-deps)
 git clone https://github.com/torch/distro.git ~/torch --recursive
-cd ~/torch/ || exit
+cd ~/torch/ || return
 yes | ./install.sh
+cd - || return
 
-cd - || exit
+source ~/.bashrc
 
 sudo apt-get install -y --force-yes \
   libprotobuf-dev \
   protobuf-compiler
 
 luarocks install loadcaffe
-# ~/torch/install/bin/luarocks install loadcaffe
+
+source ~/.bashrc
 
 git clone https://github.com/jcjohnson/neural-style.git
-sh ~/neural-style/models/download_models.sh
+cd ~/neural-style/models/ || return
+yes | download_models.sh
+cd - || return
+
+source ~/.bashrc
 
 Update
 
