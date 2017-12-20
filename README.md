@@ -77,8 +77,11 @@ $ cd ~/neural-style
 $ th neural_style.lua -gpu -1 -print_iter 1
 # Instructions about how to use neural style:
 $ th neural_style.lua ?
-th neural_style.lua -style_image examples/inputs/picasso_selfport1907.jpg -content_image examples/inputs/shipwreck.jpg -gpu -1 -image_size 256
+# Create a test image (out.png is end result):
+$ th neural_style.lua -style_image examples/inputs/picasso_selfport1907.jpg -content_image examples/inputs/shipwreck.jpg -gpu -1 -image_size 256
 ```
+
+If the above works, then use the synced directory to move images in/out of the guest machine and start creating your own neural-style imagery!
 
 ## Vagrant tips
 
