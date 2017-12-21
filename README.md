@@ -92,7 +92,7 @@ $ vagrant halt
 # Deallocate virtual machine resources:
 $ vagrant destroy
 # Remove the box file:
-$ vagrant box remove
+$ vagrant box remove <name>
 ```
 
 When running `vagrant up`, Vagrant will install dependencies as defined by the provisioning script(s); this is called “[Automatic Provisioning](https://www.vagrantup.com/intro/getting-started/provisioning.html)”.
