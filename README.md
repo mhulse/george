@@ -85,8 +85,14 @@ $ vagrant ssh
 $ logout
 # … or:
 $ exit
+# Suspend the guest machine:
+$ vagrant suspend
 # Stop VM:
 $ vagrant halt
+# Deallocate virtual machine resources:
+$ vagrant destroy
+# Remove the box file:
+$ vagrant box remove
 ```
 
 When running `vagrant up`, Vagrant will install dependencies as defined by the provisioning script(s); this is called “[Automatic Provisioning](https://www.vagrantup.com/intro/getting-started/provisioning.html)”.
@@ -94,15 +100,6 @@ When running `vagrant up`, Vagrant will install dependencies as defined by the p
 If you make any modifications to the [`Vagrantfile`](Vagrantfile), `reload` should be called.
 
 If you make changes to your `Vagrantfile`’s provisioner’s (i.e., [`bootstrap.sh`](bootstrap.sh)), you’ll want to call `reload --provision`.
-
-When you are completely done developing:
-
-```bash
-# Terminate the use of any resources by the virtual machine:
-$ vagrant destroy
-```
-
-**Note:** The vagrant destroy command does not actually remove the downloaded box file. To completely remove the box file, you can use the `vagrant box remove` command.
 
 A full list of Vagrant’s CLI commands can be found here: [Command-Line Interface](https://www.vagrantup.com/docs/cli/).
 
