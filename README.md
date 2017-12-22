@@ -57,6 +57,9 @@ You are now connected to the Vagrant box at `/home/vagrant`.
 ## Neural Style
 
 ```bash
+# Check if torch is working:
+$ th
+# … and type `exit` to close the interactive shell.
 $ cd ~/neural-style
 # Check if neural style is working with this command:
 $ th neural_style.lua -gpu -1 -print_iter 1
