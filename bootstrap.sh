@@ -55,14 +55,14 @@ cd $HOME || exit
 bash <(curl -sL https://raw.githubusercontent.com/torch/ezinstall/master/install-deps)
 # Remove previous install:
 rm -rf torch
-# Install Lua and Torch, and add Torch to `$PATH` variable:
+# Install Lua and Torch, (adds Torch `th` to `$PATH`):
 git clone https://github.com/torch/distro.git torch --recursive
 cd torch || exit
+# Set env to use lua (is this needed?):
+TORCH_LUA_VERSION=LUA52
 yes | ./install.sh
 # Go back to previous directory:
 cd - || exit
-
-source .bashrc
 
 #-----------------------------------------------------------------------
 
@@ -72,6 +72,8 @@ Message "INSTALLING LOADCAFFE"
 sudo apt-get install -y --force-yes \
   libprotobuf-dev \
   protobuf-compiler
+
+source .bashrc
 
 # Install Load Caffe:
 luarocks install loadcaffe
@@ -85,7 +87,8 @@ Message "INSTALLING NEURAL-STYLE"
 # Make sure we’re home:
 cd $HOME || exit
 # Remove previous install:
-rm -rf neural-style/*  
+rm -rf neural-style/*
+rm -rf neural-style/.* 2> /dev/null
 # Clone neural-style from GitHub:
 git clone https://github.com/jcjohnson/neural-style.git
 cd neural-style || exit
