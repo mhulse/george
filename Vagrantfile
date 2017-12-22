@@ -58,7 +58,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision(
     'shell',
     {
+      # Run as vagrant, not root:
       path: 'bootstrap.sh',
+      privileged: false,
       args: [
         # Pass arguments here …
       ]

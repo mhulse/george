@@ -24,12 +24,6 @@ Update() {
 
 }
 
-Reload() {
-  
-  source ~/.bashrc
-  
-}
-
 #-----------------------------------------------------------------------
 
 Message "STARTING BOOTSTRAP!"
@@ -55,34 +49,28 @@ Update
 
 #-----------------------------------------------------------------------
 
-#
-# https://www.linux.com/blog/create-your-own-neural-paintings-using-deep-learning
-# http://torch.ch/docs/getting-started.html
-# https://github.com/jcjohnson/neural-style/blob/master/INSTALL.md
-#
-
 Message "INSTALLING TORCH"
 
-#
-# http://torch.ch/docs/getting-started.html#_
-#
-
-cd ~/ || exit
+# Make sure we’re home:
+cd $HOME || exit
 # Install all dependencies for Torch:
 bash <(curl -sL https://raw.githubusercontent.com/torch/ezinstall/master/install-deps)
-git clone https://github.com/torch/distro.git ~/torch --recursive
-cd ~/torch || exit
+# Remove previous install:
+rm -rf torch
 # Install Lua and Torch, and add Torch to `$PATH` variable:
+git clone https://github.com/torch/distro.git torch --recursive
+cd torch || exit
 yes | ./install.sh
+# Go back to previous directory:
 cd - || exit
 
-Reload
+source .bashrc
 
 #-----------------------------------------------------------------------
 
 Message "INSTALLING LOADCAFFE"
 
-# Install Google’s Protocol Buffer library as it is a Load Caffe depencency:
+# Google’s Protocol Buffer library is a Load Caffe depencency:
 sudo apt-get install -y --force-yes \
   libprotobuf-dev \
   protobuf-compiler
@@ -90,26 +78,26 @@ sudo apt-get install -y --force-yes \
 # Install Load Caffe:
 luarocks install loadcaffe
 
-Reload
-
 Update
 
 #-----------------------------------------------------------------------
 
 Message "INSTALLING NEURAL-STYLE"
 
-cd ~/ || exit
+# Make sure we’re home:
+cd $HOME || exit
+# Remove previous install:
+rm -rf neural-style/*  
 # Clone neural-style from GitHub:
 git clone https://github.com/jcjohnson/neural-style.git
-cd ~/neural-style/models || exit
+cd neural-style || exit
 # Download the pre-trained neural network models:
-yes | sh download_models.sh
+yes | sh models/download_models.sh
+# Go back to previous directory:
 cd - || exit
 
-Reload
+Update
 
 #-----------------------------------------------------------------------
-
-Update
 
 Message "BOOTSTRAP FINISHED!"

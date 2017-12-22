@@ -108,8 +108,11 @@ A full list of Vagrant’s CLI commands can be found here: [Command-Line Interfa
 
 ## Links
 
-- [Create Your Own "Neural Paintings" using Deep Learning](https://www.linux.com/blog/create-your-own-neural-paintings-using-deep-learning)
 - [neural-style](https://github.com/jcjohnson/neural-style)
+- [neural-style Installation](https://github.com/jcjohnson/neural-style/blob/master/INSTALL.md)
+- [Getting started with Torch](http://torch.ch/docs/getting-started.html)
+- [Create Your Own "Neural Paintings" using Deep Learning](https://www.linux.com/blog/create-your-own-neural-paintings-using-deep-learning)
+
 ## Legal
 
 Copyright © 2018 [Michael Hulse](http://mky.io).
