@@ -1,9 +1,7 @@
 # George
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=ZPS3qLtaFtw" target="_blank">
-	<img width="100%" src="george.gif">
-  </a>
+	<img src="george.gif" width="100%">
 </p>
 
 **Neural Style [Vagrant](https://www.vagrantup.com/) provisioning script.**
@@ -74,6 +72,8 @@ If the above tests work, then use the synced directory to move images in/out of 
 ```bash
 # Approximately 8.625" X 8.75" at 300ppi (2588px X 2625px):
 $ th neural_style.lua -style_image images/style_image.jpg -content_image images/content_image.jpg -gpu -1 -num_iterations 2000 -seed 123 -image_size 2625
+# Bonus! Make animated gif from the generated images:
+$ convert -delay 40 -loop 0 out_*.png neural_style.gif
 ```
 
 ## Vagrant tips
