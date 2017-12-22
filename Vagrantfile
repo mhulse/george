@@ -7,12 +7,12 @@ Vagrant.configure(2) do |config|
   
   config.vm.provider 'virtualbox' do |vb|
     
-    # Boost memory usage to 6GB:
+    # Boost memory usage to 8GB:
     vb.customize [
       'modifyvm',
       :id,
       '--memory',
-      6144
+      8192
     ]
     
     # CPU usage:

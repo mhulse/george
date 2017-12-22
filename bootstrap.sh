@@ -58,11 +58,11 @@ rm -rf torch
 # Install Lua and Torch, (adds Torch `th` to `$PATH`):
 git clone https://github.com/torch/distro.git torch --recursive
 cd torch || exit
-# Set env to use lua (is this needed?):
-TORCH_LUA_VERSION=LUA52
 yes | ./install.sh
 # Go back to previous directory:
 cd - || exit
+# Update profile:
+source $HOME/.bashrc
 
 #-----------------------------------------------------------------------
 
@@ -72,8 +72,6 @@ Message "INSTALLING LOADCAFFE"
 sudo apt-get install -y --force-yes \
   libprotobuf-dev \
   protobuf-compiler
-
-source .bashrc
 
 # Install Load Caffe:
 luarocks install loadcaffe
