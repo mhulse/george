@@ -67,11 +67,14 @@ $ th neural_style.lua -gpu -1 -print_iter 1
 $ th neural_style.lua ?
 # Create a test image (out.png is end result):
 $ th neural_style.lua -style_image examples/inputs/picasso_selfport1907.jpg -content_image examples/inputs/shipwreck.jpg -gpu -1 -image_size 256
-# Put your images in the `neural-style` dir and make one at ~8.625" X 8.75" @ 300ppi (2588px X 2625px):
-$ th neural_style.lua -style_image images/style_image.jpg -content_image images/content_image.jpg -gpu -1 -num_iterations 2000 -seed 123 -image_size 2625
 ```
 
-If the above works, then use the synced directory to move images in/out of the guest machine and start creating your own neural-style imagery!
+If the above tests work, then use the synced directory to move images in/out of the guest machine … For example:
+
+```bash
+# Approximately 8.625" X 8.75" at 300ppi (2588px X 2625px):
+$ th neural_style.lua -style_image images/style_image.jpg -content_image images/content_image.jpg -gpu -1 -num_iterations 2000 -seed 123 -image_size 2625
+```
 
 ## Vagrant tips
 
