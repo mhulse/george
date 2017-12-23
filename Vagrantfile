@@ -21,6 +21,8 @@ Vagrant.configure(2) do |config|
       :id,
       '--cpus',
       2
+      # Set half of available CPU count:
+      #`awk "/^processor/ {++n} END {print n}" /proc/cpuinfo 2> /dev/null || sh -c 'sysctl hw.logicalcpu 2> /dev/null || echo ": 2"' | awk \'{print \$2}\' `.chomp
     ]
     
   end
